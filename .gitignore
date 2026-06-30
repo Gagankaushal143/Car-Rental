@@ -1,0 +1,55 @@
+# ===========================
+# Dependencies
+# ===========================
+**/node_modules/
+
+# ===========================
+# Environment Variables
+# ===========================
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.production.local
+
+# ===========================
+# Logs
+# ===========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ===========================
+# Build Output
+# ===========================
+frontend/dist/
+frontend/build/
+backend/dist/
+
+# ===========================
+# Uploads (if storing locally)
+# ===========================
+backend/uploads/
+
+# ===========================
+# OS Files
+# ===========================
+.DS_Store
+Thumbs.db
+
+# ===========================
+# IDE Files
+# ===========================
+.vscode/
+.idea/
+
+# ===========================
+# Coverage
+# ===========================
+coverage/
+
+# ===========================
+# Misc
+# ===========================
+*.pid
+*.seed
