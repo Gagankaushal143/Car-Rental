@@ -253,7 +253,7 @@ export const updateCar = async (req, res) => {
         if (mileage) updateData.mileage = mileage;
         if (category?.trim()) updateData.category = category.trim();
 
-        const updatedCar = await Car.findByIdAndUpdate(
+         const updatedCar = await Car.findByIdAndUpdate(
             id,
             updateData,
             {
@@ -279,6 +279,24 @@ export const updateCar = async (req, res) => {
 
 export const deleteCar = async (req, res) => {
     try {
+        const { id } = req.params;
+
+        const car = await Car.findById(req.params.id);
+        if(!car){
+            return res.status(404).json({
+                success : false,
+                message : "Car not found !",
+            });
+        }
+
+        if(car.owner.toString() !== req.user.userId){
+            return res.status(403).json({
+                success : false,
+                message : "You are not authorized to delete this car",
+            });
+        }
+
+        
 
     }
     catch (error) {
