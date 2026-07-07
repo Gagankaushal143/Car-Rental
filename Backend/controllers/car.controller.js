@@ -296,7 +296,12 @@ export const deleteCar = async (req, res) => {
             });
         }
 
+        await Car.findByIdAndDelete(id);
         
+        return res.status(200).json({
+            success : true,
+            message : "Car deleted successfully !",
+        });
 
     }
     catch (error) {
