@@ -8,7 +8,7 @@ import { CarDetails } from "./pages/CarDetails";
 
 function App() {
   return (
-    <>
+    <div className="bg-linear-to-r from-white to-orange-50 h-screen pt-1">
       <Navbar />
 
       <Routes>
@@ -18,7 +18,7 @@ function App() {
         <Route path="/login" element= {<Login />}/>
         <Route path="/register" element = {<Register />}/>
       </Routes>
-    </>
+    </div>
   );
 }
 
