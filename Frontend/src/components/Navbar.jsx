@@ -2,7 +2,7 @@ import { Link , NavLink } from "react-router-dom"
 
 export const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between px-6 h-18 max-w-7xl rounded-3xl mx-auto bg-gray-900 text-white sticky top-0">
+    <nav className="flex items-center justify-between px-6 h-18 max-w-7xl rounded-3xl mx-auto bg-gray-900 text-white sticky top-0 backdrop-blur-lg">
       <div>
         <Link to="/" className="text-orange-500 font-bold text-2xl">🚗 RentalX</Link>
       </div>
