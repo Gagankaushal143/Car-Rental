@@ -8,7 +8,7 @@ import { CarDetails } from "./pages/CarDetails";
 
 function App() {
   return (
-    <div className="bg-linear-to-r from-white to-orange-50 h-screen pt-1">
+    <div className="bg-linear-to-r from-white to-orange-50 min-h-screen pt-1">
       <Navbar />
 
       <Routes>
