@@ -5,10 +5,10 @@ import { Loader } from "../components/Loader.jsx";
 import PlaceholderImage from "../assets/images/propImg.png"
 import { Link } from "react-router-dom";
 import { FaCar, FaRegCalendarAlt, FaRegHeart } from "react-icons/fa";
-import { FaGear, FaLocationDot, FaCheck  } from "react-icons/fa6";
+import { FaGear, FaLocationDot, FaCheck } from "react-icons/fa6";
 import { BsFuelPumpFill } from "react-icons/bs";
-import { IoMdSpeedometer } from "react-icons/io";
-import { IoCall } from "react-icons/io5";
+import { IoMdSpeedometer, IoMdTime } from "react-icons/io";
+import { IoCall, IoPricetagsOutline, IoShieldCheckmarkOutline, IoStarSharp } from "react-icons/io5";
 import { MdChair } from "react-icons/md";
 
 export const CarDetails = () => {
@@ -50,16 +50,40 @@ export const CarDetails = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-white shadow-xl rounded-xl items-center">
 
-        <div className="h-full p-6">
-          <div className="overflow-hidden object-cover bg-orange-50 rounded-xl h-full flex items-center justify-center">
+        <div className="h-full flex flex-col items-center justify-around  p-6">
+          <div className="overflow-hidden object-cover bg-gray-100 rounded-xl flex flex-col items-end justify-center p-2">
+            <p className="bg-green-600 text-white px-4 py-2 text-xs rounded-xl ">Available</p>
             <img src={PlaceholderImage} alt={car.title} className="hover:scale-105 transition-transform duration-300" />
+          </div>
+
+          <div className="flex items-center justify-around bg-orange-50 rounded-xl w-full p-6">
+            <div className="flex items-center justify-center gap-2">
+              <IoShieldCheckmarkOutline className="text-orange-500 text-lg"/>
+              <p className="flex flex-col font-semibold text-xs">Well Maintained<span className="font-normal">Quality Checked Cars</span>
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <IoMdTime className="text-orange-500 text-lg"/>
+              <p className="flex flex-col text-xs font-semibold">24/7 Support<span className="font-normal">We're here to help</span>
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <IoPricetagsOutline className="text-orange-500 text-lg"/>
+              <p className="flex flex-col text-xs font-semibold">Best Price<span className="font-normal">Affordable Rates</span>
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <BsFuelPumpFill className="text-orange-500 text-lg"/>
+              <p className="flex flex-col text-xs font-semibold">Full Tank<span className="font-normal">Fuel Policy</span>
+              </p>
+            </div>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-md p-6">
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold">{car.title}</h1>
-            <p>⭐⭐⭐⭐⭐</p>
+            <p className="flex text-yellow-400"><IoStarSharp/><IoStarSharp/><IoStarSharp/><IoStarSharp/><IoStarSharp/></p>
             <p className="text-xl text-orange-500 font-bold">₹{car.pricePerDay}<span className="text-black font-normal">/day</span></p>
           </div>
 
@@ -110,11 +134,11 @@ export const CarDetails = () => {
         <p>The {car.title} is the perfect blend of style, comfort and performance. It offers a premium driving experience with a specious cabin, advanced safety features and excellent fuel efficiency. Ideal for both city drives and highway journeys</p>
 
         <div className="py-4 w-full flex items-center justify-around">
-          <span className="px-4 py-2 bg-orange-100 rounded-lg text-orange-500 flex items-center justify-center gap-2"><FaCheck/>Spacious & Comfortable</span>
-          <span className="px-4 py-2  bg-orange-100 rounded-lg text-orange-500 flex items-center justify-center gap-2"><FaCheck/>Advanced Safety</span>
-          <span className="px-4 py-2  bg-orange-100 rounded-lg text-orange-500 flex items-center justify-center gap-2"><FaCheck/>Smooth Performance</span>
-          <span className="px-4 py-2  bg-orange-100 rounded-lg text-orange-500 flex items-center justify-center gap-2"><FaCheck/>Fuel Effiecient</span>
-          <span className="px-4 py-2  bg-orange-100 rounded-lg text-orange-500 flex items-center justify-center gap-2"><FaCheck/>Ideal for City & Highway</span>
+          <span className="px-4 py-2 bg-orange-50 rounded-lg flex items-center justify-center gap-2"><FaCheck className="text-orange-500"/>Spacious & Comfortable</span>
+          <span className="px-4 py-2  bg-orange-50 rounded-lg flex items-center justify-center gap-2"><FaCheck className="text-orange-500"/>Advanced Safety</span>
+          <span className="px-4 py-2  bg-orange-50 rounded-lg flex items-center justify-center gap-2"><FaCheck className="text-orange-500"/>Smooth Performance</span>
+          <span className="px-4 py-2  bg-orange-50 rounded-lg flex items-center justify-center gap-2"><FaCheck className="text-orange-500"/>Fuel Effiecient</span>
+          <span className="px-4 py-2  bg-orange-50 rounded-lg flex items-center justify-center gap-2"><FaCheck className="text-orange-500"/>Ideal for City & Highway</span>
         </div>
       </div>
     </section>
