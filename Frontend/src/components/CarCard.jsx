@@ -1,4 +1,5 @@
 import PlaceholderImg from "../assets/images/propImg.png"
+import { Link } from "react-router-dom"
 
 export const CarCard = ({ car }) => {
   return (
@@ -20,7 +21,7 @@ export const CarCard = ({ car }) => {
 
         <div className="flex items-center justify-between py-4">
             <p><span className="font-bold text-lg text-orange-500">₹{car.pricePerDay}</span>/day</p>
-            <a href="" className="border-2 border-orange-500 px-4 py-2 rounded-lg text-orange-500 group-hover:bg-orange-500 group-hover:text-white shadow-lg group-hover:shadow-gray-300 transition-colors duration-300">View Details →</a>
+            <Link to={`/cars/${car._id}`} className="border-2 border-orange-500 px-4 py-2 rounded-lg text-orange-500 group-hover:bg-orange-500 group-hover:text-white shadow-lg group-hover:shadow-gray-300 transition-colors duration-300">View Details →</Link>
         </div>
     </div>
   )
