@@ -3,10 +3,14 @@ import { Filters } from "../components/Filters"
 import { SearchBar } from "../components/SearchBar"
 import api from "../services/api.js"
 import { CarCard } from "../components/CarCard.jsx"
+import { Loader } from "../components/Loader.jsx"
+import { Pagination } from "../components/Pagination.jsx"
 
 export const Cars = () => {
 
     const [search, setSearch] = useState("");
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalCars, setTotalCars] = useState(0);
     const [page, setPage] = useState(1);
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -30,7 +34,7 @@ export const Cars = () => {
 
     const fetchCars = async () => {
         try {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
+            await new Promise((resolve) => setTimeout(resolve, 1000));
 
             const params = {};
 
@@ -48,6 +52,8 @@ export const Cars = () => {
             });
 
             setCars(response.data.data);
+            setTotalPages(response.data.totalPages);
+            setTotalCars(response.data.totalCars);
         }
         catch (error) {
             console.log(error)
@@ -59,17 +65,8 @@ export const Cars = () => {
 
     useEffect(() => {
         fetchCars();
-    }, [search, filters, page]);
-
-
-    if(loading){
-        return(
-            <div className="flex items-center justify-center py-20 ">
-                Loading Cars..
-            </div>
-        )
-    }
-    
+    }, [search, filters, page, totalPages, totalCars]);
+ 
 
     return (
         <section className="min-h-[80vh] p-8 max-w-7xl mx-auto">
@@ -82,11 +79,18 @@ export const Cars = () => {
                 />
 
             </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
+
+            {loading ? (
+                <Loader />
+            ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
                     {cars.map((car) => (
                         <CarCard key={car._id} car={car} />
                     ))}
                 </div>
+                )
+            }
+            <Pagination currentPage= {page} totalPages={totalPages} setPage={setPage}/>
         </section>
     )
 }

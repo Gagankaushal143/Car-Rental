@@ -2,6 +2,7 @@
 import { CarCard } from "./CarCard";
 import  api  from "../services/api.js";
 import { useEffect, useState } from "react";
+import { Loader } from "./Loader.jsx";
 
 export const FeaturedCars = () => {
 
@@ -29,17 +30,7 @@ export const FeaturedCars = () => {
     useEffect(() =>{
         fetchCars();
     },[]);
-
-
-    
-    if(loading){
-        return(
-            <div className="flex items-center justify-center py-20 ">
-                Loading Cars..
-            </div>
-        )
-    }
-    
+   
 
   return (
     <section className="bg-gray-100 py-20">
@@ -57,13 +48,17 @@ export const FeaturedCars = () => {
                 </span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
                 {
                     cars.map((car) =>(
                         <CarCard  key={car._id} car={car}/>
                     ))
                 }
             </div>
+            )}
         </div>
     </section>
   )
