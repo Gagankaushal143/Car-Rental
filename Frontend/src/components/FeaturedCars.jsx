@@ -3,6 +3,7 @@ import { CarCard } from "./CarCard";
 import  api  from "../services/api.js";
 import { useEffect, useState } from "react";
 import { Loader } from "./Loader.jsx";
+import { Link } from "react-router-dom";
 
 export const FeaturedCars = () => {
 
@@ -51,7 +52,7 @@ export const FeaturedCars = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center py-20">
                 {
                     cars.map((car) =>(
                         <CarCard  key={car._id} car={car}/>
@@ -59,6 +60,9 @@ export const FeaturedCars = () => {
                 }
             </div>
             )}
+            <div className="flex items-center justify-center">
+                <Link to={"/cars"} className="px-12 py-3 border-2 border-orange-500 text-orange-500 rounded-lg shadow-xl shadow-gray-300 hover:bg-orange-500 hover:-translate-y-1 hover:text-white transition-all duration-300">View All Cars →</Link>
+            </div>
         </div>
     </section>
   )
