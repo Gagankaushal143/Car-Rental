@@ -1,22 +1,25 @@
 import PlaceholderImg from "../assets/images/propImg.png"
 import { Link } from "react-router-dom"
+import { FaLocationDot, FaGear  } from "react-icons/fa6";
+import { BsFillFuelPumpFill } from "react-icons/bs";
+import { MdChair } from "react-icons/md";
 
 export const CarCard = ({ car }) => {
   return (
-    <div className="group max-w-xs px-4 rounded-xl shadow-lg hover:shadow-2xl space-y-4 py-4 hover:-translate-y-2 transition-all duration-300 bg-white">
+    <div className="group max-w-xs px-4 rounded-xl shadow-lg hover:shadow-2xl space-y-2 py-4 hover:-translate-y-2 transition-all duration-300 bg-white">
         <div className="p-4 bg-orange-50 rounded-lg group-hover:scale-105 transition-transform duration-300">
             <img src={PlaceholderImg} alt={car.title} />
         </div>
 
-        <div className="flex flex-col ">
+        <div className="flex flex-col space-y-2">
             <h1 className="text-xl font-semibold pl-1">{car.title}</h1>
-            <p className="text-lg">📍{car.location}</p>
+            <p className="flex items-center gap-1 text-gray-600"><FaLocationDot className="text-orange-400"/> {car.location}</p>
         </div>
 
-        <div className="flex items-center gap-6">
-            <span>⛽ {car.fuelType}</span>
-            <span>⚙️ {car.transmission}</span>
-            <span>💺 {car.seats}</span>
+        <div className="flex items-center gap-6 text-gray-600">
+            <span className="flex items-center justify-center gap-2"><BsFillFuelPumpFill className="text-orange-400"/> {car.fuelType}</span>
+            <span className="flex items-center justify-center gap-2"><FaGear className="text-orange-400"/> {car.transmission}</span>
+            <span className="flex items-center justify-center gap-2"><MdChair className="text-orange-400"/> {car.seats}</span>
         </div>
 
         <div className="flex items-center justify-between py-4">
