@@ -5,10 +5,12 @@ import api from "../services/api.js"
 import { CarCard } from "../components/CarCard.jsx"
 import { Loader } from "../components/Loader.jsx"
 import { Pagination } from "../components/Pagination.jsx"
+import { NoCarsFound } from "../components/NoCarsFound.jsx"
 
 export const Cars = () => {
 
     const [search, setSearch] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState("");
     const [totalPages, setTotalPages] = useState(1);
     const [totalCars, setTotalCars] = useState(0);
     const [page, setPage] = useState(1);
@@ -38,7 +40,7 @@ export const Cars = () => {
 
             const params = {};
 
-            if (search) params.search = search;
+            if (debouncedSearch) params.search = debouncedSearch;
             if (filters.brand) params.brand = filters.brand;
             if (filters.fuelType) params.fuelType = filters.fuelType;
             params.sort = filters.sort;
@@ -63,9 +65,17 @@ export const Cars = () => {
         }
     }
 
+    useEffect(() =>{
+        const timer = setTimeout(() =>{
+            setDebouncedSearch(search)
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [search]);
+
     useEffect(() => {
         fetchCars();
-    }, [search, filters, page, totalPages, totalCars]);
+    }, [debouncedSearch, filters, page, totalPages, totalCars]);
  
 
     return (
@@ -83,14 +93,20 @@ export const Cars = () => {
             {loading ? (
                 <Loader />
             ) : (
+                cars.length === 0 ? (
+                    <NoCarsFound />
+                ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center py-20">
                     {cars.map((car) => (
                         <CarCard key={car._id} car={car} />
                     ))}
                 </div>
                 )
+            )
             }
             <Pagination currentPage= {page} totalPages={totalPages} setPage={setPage}/>
         </section>
     )
 }
+
+
