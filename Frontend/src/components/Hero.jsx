@@ -36,7 +36,7 @@ export const Hero = () => {
             Explore Cars 
           </span>
           </Link>
-          <a className="bg-gray-50 border-2 border-gray-400 px-6 py-3 rounded-md text-lg shadow-lg shadow-gray-400 hover:border-orange-500 hover:text-orange-500  transition-all duration-300 hover:scale-105" href="">List Your Car</a>
+          <a className="bg-gray-50 border-2 border-gray-400 px-6 py-3 rounded-md text-lg shadow-lg shadow-gray-400 hover:border-orange-500 hover:text-orange-500  transition-all duration-300 hover:scale-105" href=""> List Your Car</a>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 text-lg opacity-75 pt-8">
