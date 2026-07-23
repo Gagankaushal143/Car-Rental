@@ -30,8 +30,10 @@ export const Register = () => {
       alert("Password do not match")
     }
 
-    if(formData.)
-
+    if(formData.firstName.trim() === "" || formData.lastName.trim() === "" || formData.email.trim() === "" || formData.phone.trim() === "" || formData.password.trim() === "" || formData.confirmPassword.trim() === ""){
+      alert("Please fill all fields");
+      return;
+    }
     console.log(formData);
   }
 
