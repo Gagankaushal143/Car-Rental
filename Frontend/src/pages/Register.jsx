@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import api from "../services/api.js"
+import { useNavigate } from "react-router-dom"
 
 export const Register = () => {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -12,7 +16,7 @@ export const Register = () => {
     confirmPassword: "",
   });
 
-  // const [loading , setLoading] = useState(false);
+  const [loading , setLoading] = useState(false);
 
   const handleChange = (e) =>{
     const {name, value} = e.target;
@@ -26,15 +30,35 @@ export const Register = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
 
-    if(formData.password !== formData.confirmPassword){
-      alert("Password do not match")
-    }
-
-    if(formData.firstName.trim() === "" || formData.lastName.trim() === "" || formData.email.trim() === "" || formData.phone.trim() === "" || formData.password.trim() === "" || formData.confirmPassword.trim() === ""){
+    const { firstName, lastName, email, phone, password, confirmPassword } = formData;
+    
+    if(firstName.trim() === "" || lastName.trim() === "" || email.trim() === "" || phone.trim() === "" || password.trim() === "" || confirmPassword.trim() === ""){
       alert("Please fill all fields");
       return;
     }
-    console.log(formData);
+
+    if(password !== confirmPassword){
+      alert("Passwords do not match");
+      return;
+    }
+
+    const userData = {
+      firstName, lastName, email, phone, password
+    };
+
+    setLoading(true);
+
+    try{
+      const response = await api.post("/auth/register", userData);
+      alert(response.data.message);
+      navigate("/login")
+    }
+    catch(error){
+      alert(error.response?.data?.message || "Something went wrong !!")
+    }
+    finally{
+      setLoading(false)
+    }
   }
 
 
@@ -83,7 +107,7 @@ export const Register = () => {
         </div>
 
         <button className="flex items-center justify-center w-full border py-2 bg-orange-500 rounded-lg text-white font-semibold hover:bg-orange-600 hover:scale-102 transition-all duration-300 cursor-pointer" onClick={handleSubmit}>Register</button>
-        <div className="flex items-center justify-center flex-col">
+        <div className="flex items-center justify-center gap-2">
           <span>Already have an account?</span>
           <Link to={"/login"} className="text-orange-500 hover:text-orange-600">Login here</Link>
         </div>
