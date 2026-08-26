@@ -42,6 +42,7 @@ export const Login = () => {
       const response = await api.post("/auth/login", userData);
 
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.data))
 
       setToken(response.data.token);
       setUser(response.data.data);
