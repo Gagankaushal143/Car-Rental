@@ -23,7 +23,7 @@ export const Navbar = () => {
       </div>
       ) : (
         <div className="space-x-6">
-          <span className="text-lg">Hi, {user?.firstName}</span>
+          <NavLink to="/profile" className="text-lg hover:text-orange-500">Hi, {user?.firstName}</NavLink>
 
           <button onClick={logout} className="border-orange-500 border text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 cursor-pointer">
             Logout

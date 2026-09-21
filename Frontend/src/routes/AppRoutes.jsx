@@ -5,17 +5,20 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Cars } from "../pages/Cars";
 import { CarDetails } from "../pages/CarDetails";
+import { Profile } from "../pages/Profile";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export const AppRoutes = () => {
   return (
     <>
-        <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cars" element={<Cars />} />
         <Route path="/cars/:id" element={<CarDetails />} />
-        <Route path="/about" element={<About />}/>
-        <Route path="/login" element= {<Login />}/>
-        <Route path="/register" element = {<Register />}/>
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<ProtectedRoute> <Profile/> </ProtectedRoute>} /> 
       </Routes>
     </>
   )
