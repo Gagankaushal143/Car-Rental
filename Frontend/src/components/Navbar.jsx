@@ -1,5 +1,6 @@
 import { Link , NavLink } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
+import RXLogo from "../assets/images/RentalXLogo.png";
 
 export const Navbar = () => {
 
@@ -8,12 +9,18 @@ export const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 h-18 max-w-7xl rounded-3xl mx-auto bg-gray-900 text-white sticky top-0 z-999">
       <div>
-        <Link to="/" className="text-orange-500 font-bold text-2xl">🚗 RentalX</Link>
+        <Link to="/" className="font-semibold text-2xl flex items-center justify-center gap-2">
+          <img src={RXLogo} alt="Logo" className="w-20"/>
+          <h1 className="text-white/80 flex">
+            Rental
+            <p className="text-orange-500 font-bold">X</p>
+          </h1>
+        </Link>
       </div>
       <div className="space-x-8">
-        <NavLink to="/" className={({isActive}) => `transition-colors duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>Home</NavLink>
-        <NavLink to="/cars" className={({isActive}) => `transition-colors duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>Cars</NavLink>
-        <NavLink to="/about" className={({isActive}) => `transition-colors duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>About</NavLink>
+        <NavLink to="/" className={({isActive}) => `transition-colors text-lg duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>Home</NavLink>
+        <NavLink to="/cars" className={({isActive}) => `transition-colors text-lg duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>Cars</NavLink>
+        <NavLink to="/about" className={({isActive}) => `transition-colors text-lg duration-300 ${isActive ? "text-orange-400" : "text-white hover:text-orange-500"}`}>About</NavLink>
       </div>
 
       {!token ? (
